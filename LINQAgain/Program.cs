@@ -13,12 +13,12 @@ namespace LINQAgain {
                         select c;
             var data = query.AsQueryable();
 
-            // Epsilon values we wish to test
-            double[] epsilons = { 10, 5, 1, 0.5, 0.1, 0.01 };
-
             // Get PINQ object--just wraps data queryable in PINQ Queryable
             PINQueryable<BSOM_DataSet_revised> search =
                 new PINQueryable<BSOM_DataSet_revised>(data, new PINQAgent());
+
+            // Epsilon values we wish to test
+            double[] epsilons = { 10, 5, 1, 0.5, 0.1, 0.01 };
 
             // Count
             TestWholeCount(data, search, epsilons);
@@ -36,6 +36,8 @@ namespace LINQAgain {
             TestRangedCount(data, search, epsilons);
             Console.WriteLine();
 
+            GetErrorWholeCount(data, search, epsilons);
+
             // Pause the application
             Console.ReadKey(true);
         }
@@ -49,6 +51,23 @@ namespace LINQAgain {
                     "Noisy Count (epsilon {0}): {1}", ep, 
                     search.NoisyCount(ep)));
             }
+        }
+
+        static double[] GetErrorWholeCount(IQueryable<BSOM_DataSet_revised> data,
+          PINQueryable<BSOM_DataSet_revised> search, double[] epsilons) {
+            // Get true value
+            int trueCount = data.Count();
+
+            // Get list to hold our answers
+            double[] result = new double[epsilons.Length];
+
+            // Calculate differences
+            short idx = 0;
+            foreach (double ep in epsilons) {
+                result[idx++] = trueCount - search.NoisyCount(ep);
+            }
+            
+            return result;
         }
 
         static void TestAverage(IQueryable<BSOM_DataSet_revised> data,
