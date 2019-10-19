@@ -20,11 +20,29 @@ namespace LINQAgain {
         // Epsilon values we wish to test
         static double[] epsilons = { 10, 5, 1, 0.5, 0.1, 0.01 };
 
-        // Number of iterations we wish to use for average calculations
+        // Number of iterations we wish to use for calculations
         static int numIters = 100;
 
         static void Main(string[] args) {
 
+            // Run basic query tests, just to ensure everything works
+            RunBasicTests();
+
+            // Calculate the average error on different queries
+            //  across several iterations
+            //RunAverageCalculations();
+
+            // Calculate the variance of errors on different queries
+            //  across several iterations
+            RunVarianceCalculations();
+
+            // Pause the application
+            Console.ReadKey(true);
+        }
+
+        #region Driver function calls
+        
+        static void RunBasicTests() {
             // Count
             TestWholeCount(data, search, epsilons);
             Console.WriteLine();
@@ -40,14 +58,16 @@ namespace LINQAgain {
             // Ranged count
             TestRangedCount(data, search, epsilons);
             Console.WriteLine();
+        }
 
+        static void RunAverageCalculations() {
             // Generate average error on count over numIter iterations
             Console.WriteLine("Average error on counts...");
-            double[] avgWholeCountError = 
+            double[] avgWholeCountError =
                 GenerateAverageErrors(GetErrorWholeCount);
 
             for (int i = 0; i < avgWholeCountError.Length; i++) {
-                Console.WriteLine("Epsilon " + epsilons[i] + 
+                Console.WriteLine("Epsilon " + epsilons[i] +
                     " avg error: " + avgWholeCountError[i]);
             }
             Console.WriteLine();
@@ -66,7 +86,7 @@ namespace LINQAgain {
             // Generate average error on sum over numIter iterations
             Console.WriteLine("Average error on sums...");
             double[] avgSumError =
-                GenerateAverageErrors(GetErrorAverage);
+                GenerateAverageErrors(GetErrorSum);
 
             for (int i = 0; i < avgWholeCountError.Length; i++) {
                 Console.WriteLine("Epsilon " + epsilons[i] +
@@ -74,7 +94,7 @@ namespace LINQAgain {
             }
             Console.WriteLine();
 
-            // Generate average error on sum over numIter iterations
+            // Generate average error on ranged count over numIter iterations
             Console.WriteLine("Average error on ranged counts...");
             double[] avgRangeError =
                 GenerateAverageErrors(GetErrorRangedCount);
@@ -84,10 +104,55 @@ namespace LINQAgain {
                     " avg error: " + avgRangeError[i]);
             }
             Console.WriteLine();
-
-            // Pause the application
-            Console.ReadKey(true);
         }
+
+        static void RunVarianceCalculations() {
+            // Generate variance on count over numIter iterations
+            Console.WriteLine("Variance of counts...");
+            double[][] error = GenerateRangeError(GetErrorWholeCount);
+
+            for (int i = 0; i < error[0].Length; i++) {
+                Console.WriteLine(String.Format(
+                    "Epsilon {0} min variance: {1}; max variance: {2}",
+                    epsilons[i], error[0][i], error[1][i]));
+            }
+            Console.WriteLine();
+
+            // Generate variance on average over numIter iterations
+            Console.WriteLine("Variance of averages...");
+            error = GenerateRangeError(GetErrorAverage);
+
+            for (int i = 0; i < error[0].Length; i++) {
+                Console.WriteLine(String.Format(
+                    "Epsilon {0} min variance: {1}; max variance: {2}",
+                    epsilons[i], error[0][i], error[1][i]));
+            }
+            Console.WriteLine();
+
+            // Generate variance on sum over numIter iterations
+            Console.WriteLine("Variance of sums...");
+            error = GenerateRangeError(GetErrorSum);
+
+            for (int i = 0; i < error[0].Length; i++) {
+                Console.WriteLine(String.Format(
+                    "Epsilon {0} min variance: {1}; max variance: {2}",
+                    epsilons[i], error[0][i], error[1][i]));
+            }
+            Console.WriteLine();
+
+            // Generate variance on ranged count over numIter iterations
+            Console.WriteLine("Variance of ranged counts...");
+            error = GenerateRangeError(GetErrorRangedCount);
+
+            for (int i = 0; i < error[0].Length; i++) {
+                Console.WriteLine(String.Format(
+                    "Epsilon {0} min variance: {1}; max variance: {2}",
+                    epsilons[i], error[0][i], error[1][i]));
+            }
+            Console.WriteLine();
+        }
+
+        #endregion
 
         #region Basic query tests
 
@@ -143,7 +208,38 @@ namespace LINQAgain {
 
         #endregion
 
-        #region Average error calculations
+        #region Cumulative error calculations
+
+        static double[][] GenerateRangeError(Func<
+          IQueryable<BSOM_DataSet_revised>, PINQueryable<BSOM_DataSet_revised>,
+          double[], double[]> inFunc) {
+            double[] minRanges = new double[epsilons.Length];
+            double[] maxRanges = new double[epsilons.Length];
+
+            // Initialize our min/max value arrays
+            for (int i = 0; i < epsilons.Length; i++) {
+                minRanges[i] = Double.MaxValue;
+                maxRanges[i] = Double.MinValue;
+            }
+
+            // Find our min and max variances between true and noisy
+            //  answer for each epsilon value
+            for (int i = 0; i < numIters; i++) {
+                // Get errors
+                double[] errors = inFunc(data, search, epsilons);
+
+                // Assign min/max errors accordingly
+                for (int j = 0; j < epsilons.Length; j++) {
+                    double absError = Math.Abs(errors[j]);
+                    if (absError < minRanges[j])
+                        minRanges[j] = absError;
+                    if (absError > maxRanges[j])
+                        maxRanges[j] = absError;
+                }
+            }
+
+            return new double[][] { minRanges, maxRanges };
+        }
 
         static double[] GenerateAverageErrors(Func<
           IQueryable<BSOM_DataSet_revised>, PINQueryable<BSOM_DataSet_revised>,
