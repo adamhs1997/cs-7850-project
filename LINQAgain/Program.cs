@@ -24,9 +24,12 @@ namespace LINQAgain {
         static int numIters = 100;
 
         static void Main(string[] args) {
-
             // Run basic query tests, just to ensure everything works
-            RunBasicTests();
+            //RunBasicTests();
+
+            // Run tests on transformed data, seeing (1) how the results
+            //  compare, and (2) when we run out of privacy budget
+            RunTransformativeTests();
 
             // Calculate the average error on different queries
             //  across several iterations
@@ -34,7 +37,7 @@ namespace LINQAgain {
 
             // Calculate the variance of errors on different queries
             //  across several iterations
-            RunVarianceCalculations();
+            //RunVarianceCalculations();
 
             // Pause the application
             Console.ReadKey(true);
@@ -54,9 +57,15 @@ namespace LINQAgain {
             // Sum
             TestSum(data, search, epsilons);
             Console.WriteLine();
+        }
 
+        static void RunTransformativeTests() {
             // Ranged count
-            TestRangedCount(data, search, epsilons);
+            TestWhere(data, search, epsilons);
+            Console.WriteLine();
+
+            // Group by
+            TestGroupBy(data, search, epsilons);
             Console.WriteLine();
         }
 
@@ -193,9 +202,13 @@ namespace LINQAgain {
             }
         }
 
-        static void TestRangedCount(IQueryable<BSOM_DataSet_revised> data,
+        #endregion
+
+        #region Tranformative query tests
+
+        static void TestWhere(IQueryable<BSOM_DataSet_revised> data,
           PINQueryable<BSOM_DataSet_revised> search, double[] epsilons) {
-            Console.WriteLine("Count of Ranged Items: " + 
+            Console.WriteLine("Count of Ranged Items: " +
                 data.Where(x => Convert.ToDouble(x.O1_PI_01) < 0.8).Count());
 
             foreach (double ep in epsilons) {
@@ -203,6 +216,19 @@ namespace LINQAgain {
                     "Noisy Count of Ranged Items (epsilon {0}): {1}", ep,
                     search.Where(x => Convert.ToDouble(
                         x.O1_PI_01) < 0.8).NoisyCount(ep)));
+            }
+        }
+
+        static void TestGroupBy(IQueryable<BSOM_DataSet_revised> data,
+          PINQueryable<BSOM_DataSet_revised> search, double[] epsilons) {
+            // We are grouping IDs by their O1_PI_01 scores
+            Console.WriteLine("Count of distinct O1_PI_01 scores: " +
+                data.GroupBy(x => x.O1_PI_01).Count());
+
+            foreach (double ep in epsilons) {
+                Console.WriteLine("Noisy count of distinct O1_PI_01 scores " +
+                    "(epsilon " + ep + "): " +
+                    search.GroupBy(x => x.O1_PI_01).NoisyCount(ep));
             }
         }
 
