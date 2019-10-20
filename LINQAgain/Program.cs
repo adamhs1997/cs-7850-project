@@ -67,6 +67,10 @@ namespace LINQAgain {
             // Group by
             TestGroupBy(data, search, epsilons);
             Console.WriteLine();
+
+            // Group by with select
+            TestGroupByWhere(data, search, epsilons);
+            Console.WriteLine();
         }
 
         static void RunAverageCalculations() {
@@ -222,13 +226,36 @@ namespace LINQAgain {
         static void TestGroupBy(IQueryable<BSOM_DataSet_revised> data,
           PINQueryable<BSOM_DataSet_revised> search, double[] epsilons) {
             // We are grouping IDs by their O1_PI_01 scores
-            Console.WriteLine("Count of distinct O1_PI_01 scores: " +
+            Console.WriteLine("Count of distinct O1_PI_01 score groups: " +
                 data.GroupBy(x => x.O1_PI_01).Count());
 
             foreach (double ep in epsilons) {
-                Console.WriteLine("Noisy count of distinct O1_PI_01 scores " +
+                Console.WriteLine("Noisy count of distinct O1_PI_01 score groups " +
                     "(epsilon " + ep + "): " +
                     search.GroupBy(x => x.O1_PI_01).NoisyCount(ep));
+            }
+        }
+
+        static void TestGroupByWhere(IQueryable<BSOM_DataSet_revised> data,
+          PINQueryable<BSOM_DataSet_revised> search, double[] epsilons) {
+            // Group IDs by O1_PI_01 scores, then select those that have
+            //  more than 5 in each group
+            var result = data.GroupBy(x => x.O1_PI_01).Select(
+              group => new {
+                key = group.Key,
+                count = group.Count()
+              }).Where(group => group.count > 5);
+            Console.WriteLine("Count of distinct O1_PI_01 score groups" +
+                " with more than 5 members: " + result.Count());
+
+            var pinqResult = search.GroupBy(x => x.O1_PI_01).Select(
+              group => new {
+                key = group.Key,
+                count = group.Count()
+              }).Where(group => group.count > 5);
+            foreach (double ep in epsilons) {
+                Console.WriteLine("Noisy count (epsilon " + ep + "): " + 
+                    pinqResult.NoisyCount(ep));
             }
         }
 
