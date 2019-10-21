@@ -71,6 +71,10 @@ namespace LINQAgain {
             // Group by with select
             TestGroupByWhere(data, search, epsilons);
             Console.WriteLine();
+
+            // Partion operator
+            TestPartitionWhere(data, search, epsilons);
+            Console.WriteLine();
         }
 
         static void RunAverageCalculations() {
@@ -256,6 +260,44 @@ namespace LINQAgain {
             foreach (double ep in epsilons) {
                 Console.WriteLine("Noisy count (epsilon " + ep + "): " + 
                     pinqResult.NoisyCount(ep));
+            }
+        }
+
+        static void TestPartitionWhere(IQueryable<BSOM_DataSet_revised> data,
+          PINQueryable<BSOM_DataSet_revised> search, double[] epsilons) {
+            // Group IDs by O1_PI_01 scores, then count items in each group
+            // This is what is emulated by PINQ partition operator, below
+            var result = data.GroupBy(x => x.O1_PI_01).Select(
+              group => new {
+                  key = group.Key,
+                  count = group.Count()
+              });
+            Console.WriteLine("Count of items in distinct O1_PI_01 groups");
+            foreach (var r in result) {
+                Console.WriteLine(String.Format("Score {0}: {1}",
+                    r.key, r.count));
+            }
+
+            // PINQ version, with partition instead of groupby
+            // Partition is poorly documented, see example at
+            //  https://github.com/LLGemini/PINQ/blob/master/TestHarness/TestHarness.cs
+
+            // Note we must explicitly give the keys here, so PINQ assumes
+            //  we must know something about the data already to use
+            //  this powerful operator
+            // Note our keys and values must be of the same type, hence we use
+            //  string keys. These must also perfectly match the values
+            //  returned by the raw query.
+            string[] keys = { "0.5000", "0.5500", "0.6000", "0.6500", "0.7000",
+                    "0.7500", "0.8000", "0.8500", "0.9000", "0.9500", "1.0000" };
+            var pinqQuerySet = search.Partition(keys, x => x.O1_PI_01);
+            Console.WriteLine("Noisy Counts:");
+            foreach (double ep in epsilons) {
+                foreach (string key in keys) {
+                    Console.WriteLine(String.Format("Epsilon {0}\tScore {1}:" +
+                        " {2}", ep, key, pinqQuerySet[key].NoisyCount(ep)));
+                }
+                Console.WriteLine("---");
             }
         }
 
