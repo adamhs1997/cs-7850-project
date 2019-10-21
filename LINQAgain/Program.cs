@@ -75,6 +75,10 @@ namespace LINQAgain {
             // Partion operator
             TestPartitionWhere(data, search, epsilons);
             Console.WriteLine();
+
+            // Exhaust budget
+            TestExhaustedPrivacyBudget(data);
+            Console.WriteLine();
         }
 
         static void RunAverageCalculations() {
@@ -298,6 +302,43 @@ namespace LINQAgain {
                         " {2}", ep, key, pinqQuerySet[key].NoisyCount(ep)));
                 }
                 Console.WriteLine("---");
+            }
+        }
+
+        static void TestExhaustedPrivacyBudget(
+          IQueryable<BSOM_DataSet_revised> data) {
+            // Note we need no LINQ version of this query, as there is no
+            //  privacy budget to compare to with it
+
+            // We first need to have a PINQueryable object that actually
+            //  checks against a budget
+            PINQueryable<BSOM_DataSet_revised> search =
+                new PINQueryable<BSOM_DataSet_revised>(
+                    data, new PINQAgentBudget(50));
+
+            // Essentially apply transformations until we can't anymore
+            // This will be done by repetitively using a 'where' tranform,
+            //  while incrementing the actual threhold we intend to cut
+            Console.Write("Number of iterations we can do before privacy" +
+                " budget is exhausted: ");
+            double threshold = 0.1;
+            int iters = 0;
+            while (true) {
+                // Do a selection of data
+                var result = search.Where(x => 
+                    Convert.ToDouble(x.O1_PI_01) > threshold);
+
+                // Try to do a noisy count, breaking if we except
+                try {
+                    result.NoisyCount(1);
+                } catch (Exception e) {
+                    Console.WriteLine(iters);
+                    break;
+                }
+
+                // Increment threshold and counter
+                threshold += 0.1;
+                iters++;
             }
         }
 
