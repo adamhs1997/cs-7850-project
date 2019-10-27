@@ -3,7 +3,7 @@ using System.Linq;
 using PINQ;
 
 namespace LINQAgain {
-    class Program {
+    class LINQvPINQTests {
 
         // Obtaining the data source 
         static MedicalDataContext db = new MedicalDataContext();
@@ -23,25 +23,25 @@ namespace LINQAgain {
         // Number of iterations we wish to use for calculations
         static int numIters = 100;
 
-        static void Main(string[] args) {
-            // Run basic query tests, just to ensure everything works
-            //RunBasicTests();
+        //static void Main(string[] args) {
+        //    // Run basic query tests, just to ensure everything works
+        //    //RunBasicTests();
 
-            // Run tests on transformed data, seeing (1) how the results
-            //  compare, and (2) when we run out of privacy budget
-            RunTransformativeTests();
+        //    // Run tests on transformed data, seeing (1) how the results
+        //    //  compare, and (2) when we run out of privacy budget
+        //    RunTransformativeTests();
 
-            // Calculate the average error on different queries
-            //  across several iterations
-            //RunAverageCalculations();
+        //    // Calculate the average error on different queries
+        //    //  across several iterations
+        //    //RunAverageCalculations();
 
-            // Calculate the variance of errors on different queries
-            //  across several iterations
-            //RunVarianceCalculations();
+        //    // Calculate the variance of errors on different queries
+        //    //  across several iterations
+        //    //RunVarianceCalculations();
 
-            // Pause the application
-            Console.ReadKey(true);
-        }
+        //    // Pause the application
+        //    Console.ReadKey(true);
+        //}
 
         #region Driver function calls
         
