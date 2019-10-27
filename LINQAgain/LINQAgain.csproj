@@ -46,12 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KMeansTests.cs" />
     <Compile Include="DataClasses1.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="LINQvPINQTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -78,6 +79,10 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PINQ\PINQ\PINQ\MachineLearning\MachineLearning.csproj">
+      <Project>{87731d46-2892-40b1-a435-b1a49da82287}</Project>
+      <Name>MachineLearning</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PINQ\PINQ\PINQ\PINQ\PINQ.csproj">
       <Project>{0c8e10a2-d596-4bd6-be38-c92930b7fccb}</Project>
       <Name>PINQ</Name>
