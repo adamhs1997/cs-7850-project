@@ -1,3 +1,5 @@
 .vs/
 Backup/
 *.htm
+*/bin
+*/obj
