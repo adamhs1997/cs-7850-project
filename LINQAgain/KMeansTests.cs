@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MachineLearning;
 using PINQ;
@@ -8,40 +9,40 @@ namespace LINQAgain {
 
         static void Main(string[] args) {
             // Get some data
-            IQueryable<double[]> rawData = GenerateSimpleData();// Generate2DRandomData();
+            double[][] rawData = GenerateSimpleData();// Generate2DRandomData();
 
             // Get PINQ-safe data
-            PINQueryable<double[]> pinqData = GeneratePINQData(rawData);
+            PINQueryable<double[]> pinqData = PackDataAsQueryable(rawData);
 
             // Do PINQ k-means
-            RunPINQKMeans(pinqData, 1000, 2, 2, 5);
+            //RunPINQKMeans(pinqData, 1000, 2, 2, 5);
+            RunPureKMeans(rawData, 2, 2, 5);
 
             // Pause the application
             Console.ReadKey(true);
         }
 
-        static IQueryable<double[]> GenerateSimpleData() {
+        static double[][] GenerateSimpleData() {
             // Return simple data with clear clusters to make sure
             //  algorithms work
-            // Expected centroids: 0, 0.85
+            // Expected centroids: (0, 0), (0.85, 0.85)
             double[][] data = { new double[] { -0.2, -0.2 },
                                 new double[] { 0, 0 },
                                 new double[] { 0.2, 0.2 },
                                 new double[] { 0.8, 0.8 },
                                 new double[] { 0.9, 0.9 } };
-            return data.AsQueryable();
+            return data;
         }
 
-        static IQueryable<double[]> Generate2DRandomData() {
+        static double[][] Generate2DRandomData() {
             // Gets 1000 elements from the random number generator and
             //  returns them as queryable            
-            return Program.GenerateData(2).Take(1000).ToArray().AsQueryable();
+            return Program.GenerateData(2).Take(1000).ToArray();
         }
 
-        static PINQueryable<double[]> GeneratePINQData(
-          IQueryable<double[]> data) {
-            // Wraps raw queryable object with PINQueryable
-            return new PINQueryable<double[]>(data, null);
+        static PINQueryable<double[]> PackDataAsQueryable(double[][] data) {
+            // Wraps raw data with PINQueryable
+            return new PINQueryable<double[]>(data.AsQueryable(), null);
         }
 
         static void RunPINQKMeans(PINQueryable<double[]> data, double epsilon,
@@ -66,6 +67,87 @@ namespace LINQAgain {
                     Console.Write("\t{0:F4}", value);
                 Console.WriteLine();
             }
+        }
+
+        static void RunPureKMeans(double[][] data, int dataDims, int k, 
+          int iters) {
+            // Performs #iters toward forming #k clusters with
+            //  k-means clustering, for #dataDims-dimensional data
+
+            // Get random seed centroids
+            double[][] centroids = Program.GenerateData(
+                dataDims).Take(k).ToArray();
+
+            // Run k times
+            for (int iter = 0; iter < iters; iter++) {
+                centroids = KMeansIter(data, centroids, dataDims);
+            }
+
+            // Print results
+            Console.WriteLine("kMeans: {0} centers, {1} iterations", k, iters);
+            foreach (double[] center in centroids) {
+                foreach (double value in center)
+                    Console.Write("\t{0:F4}", value);
+                Console.WriteLine();
+            }
+        }
+
+        static double Dist(double[] v1, double[] v2) {
+            // Used to find distance between two vectors
+            double sum = 0;
+            for (int i = 0; i < v1.Length; i++) {
+                double d = v1[i] - v2[i];
+                sum += d * d;
+            }
+            return Math.Sqrt(sum);
+        }
+
+        static double[][] KMeansIter(double[][] data, double[][] centroids,
+          int dataDims) {
+            // Get the nearest centroid to each data vector
+            Dictionary<double[], List<double[]>> parts =
+                new Dictionary<double[], List<double[]>>();
+            foreach (double[] d in data) {
+                double minDist = Double.MaxValue;
+                double[] currentBest = { 0, 0 };
+
+                foreach (double[] c in centroids) {
+                    double dist = Dist(d, c);
+                    if (dist < minDist) {
+                        minDist = dist;
+                        currentBest = c;
+                    }
+                }
+
+                // Assign datapoint to centroid
+                try {
+                    parts[currentBest].Add(d);
+                }
+                catch (KeyNotFoundException) {
+                    parts[currentBest] = new List<double[]> { d };
+                }
+            }
+
+            // Update centers
+            double[][] newCentroids = new double[centroids.Length][];
+            for (int i = 0; i < centroids.Length; i++) {
+
+                // Sum up each dimension of each datapoint
+                double[] sums = new double[dataDims];
+                foreach (double[] d in parts[centroids[i]]) {
+                    for (int j = 0; j < dataDims; j++) {
+                        sums[j] += d[j];
+                    }
+                }
+
+                // Create new centroid
+                for (int j = 0; j < dataDims; j++) {
+                    sums[j] /= dataDims;
+                }
+                newCentroids[i] = sums;
+            }
+
+            return newCentroids;
         }
     }
 }
