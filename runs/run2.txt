@@ -1,0 +1,199 @@
+True Count: 115
+Noisy Count (epsilon 10): 115.019524380251
+Noisy Count (epsilon 5): 114.684051386426
+Noisy Count (epsilon 1): 114.943543910624
+Noisy Count (epsilon 0.5): 112.635462641639
+Noisy Count (epsilon 0.1): 107.815679635771
+Noisy Count (epsilon 0.01): 199.456276654912
+
+True Average of O1_PI_01s: 0.800434782608696
+Noisy Average of O1_PI_01s (epsilon 10): 0.802375046143575
+Noisy Average of O1_PI_01s (epsilon 5): 0.800243525427665
+Noisy Average of O1_PI_01s (epsilon 1): 0.800994814224417
+Noisy Average of O1_PI_01s (epsilon 0.5): 0.775692723611674
+Noisy Average of O1_PI_01s (epsilon 0.1): 0.833649374956894
+Noisy Average of O1_PI_01s (epsilon 0.01): 0.94301373469208
+
+True Sum of O1_PI_01s: 92.05
+Noisy Average of O1_PI_01s (epsilon 10): 92.0295569729132
+Noisy Average of O1_PI_01s (epsilon 5): 91.8129276640269
+Noisy Average of O1_PI_01s (epsilon 1): 90.7118023440791
+Noisy Average of O1_PI_01s (epsilon 0.5): 91.5431284703884
+Noisy Average of O1_PI_01s (epsilon 0.1): 94.1791923176303
+Noisy Average of O1_PI_01s (epsilon 0.01): 154.599061855116
+
+Count of Ranged Items: 41
+Noisy Count of Ranged Items (epsilon 10): 40.9478439192647
+Noisy Count of Ranged Items (epsilon 5): 40.9217870405086
+Noisy Count of Ranged Items (epsilon 1): 38.7792739784371
+Noisy Count of Ranged Items (epsilon 0.5): 47.1366946524438
+Noisy Count of Ranged Items (epsilon 0.1): 50.5322574982743
+Noisy Count of Ranged Items (epsilon 0.01): 5.81702680733664
+
+Count of distinct O1_PI_01 score groups: 11
+Noisy count of distinct O1_PI_01 score groups (epsilon 10): 11.0454105446971
+Noisy count of distinct O1_PI_01 score groups (epsilon 5): 11.0100161654987
+Noisy count of distinct O1_PI_01 score groups (epsilon 1): 10.3756492646152
+Noisy count of distinct O1_PI_01 score groups (epsilon 0.5): 11.0733192291192
+Noisy count of distinct O1_PI_01 score groups (epsilon 0.1): -8.23398071249761
+Noisy count of distinct O1_PI_01 score groups (epsilon 0.01): -7.07207563380832
+
+Count of distinct O1_PI_01 score groups with more than 5 members: 7
+Noisy count (epsilon 10): 6.68069290820276
+Noisy count (epsilon 5): 6.76237833565476
+Noisy count (epsilon 1): 7.54644546635633
+Noisy count (epsilon 0.5): 6.6633741941975
+Noisy count (epsilon 0.1): 5.1020782288968
+Noisy count (epsilon 0.01): -85.7637570625247
+
+Count of items in distinct O1_PI_01 groups
+Score 0.5000: 2
+Score 0.5500: 1
+Score 0.6000: 2
+Score 0.6500: 12
+Score 0.7000: 9
+Score 0.7500: 15
+Score 0.8000: 24
+Score 0.8500: 16
+Score 0.9000: 25
+Score 0.9500: 7
+Score 1.0000: 2
+Noisy Counts:
+Epsilon 10      Score 0.5000: 2.01878184654379
+Epsilon 10      Score 0.5500: 0.94022129407207
+Epsilon 10      Score 0.6000: 2.07153065091288
+Epsilon 10      Score 0.6500: 12.007360596383
+Epsilon 10      Score 0.7000: 9.26573752825537
+Epsilon 10      Score 0.7500: 15.1212218585506
+Epsilon 10      Score 0.8000: 24.0146079281529
+Epsilon 10      Score 0.8500: 15.9705047039159
+Epsilon 10      Score 0.9000: 24.9756182776092
+Epsilon 10      Score 0.9500: 6.95041056458916
+Epsilon 10      Score 1.0000: 2.05360250378058
+---
+Epsilon 5       Score 0.5000: 1.90862183851672
+Epsilon 5       Score 0.5500: 1.15510051990014
+Epsilon 5       Score 0.6000: 1.83781067134967
+Epsilon 5       Score 0.6500: 11.9288678162807
+Epsilon 5       Score 0.7000: 8.98406030272345
+Epsilon 5       Score 0.7500: 15.0189372140486
+Epsilon 5       Score 0.8000: 24.2720683461966
+Epsilon 5       Score 0.8500: 15.7620536672555
+Epsilon 5       Score 0.9000: 25.0929830608904
+Epsilon 5       Score 0.9500: 7.08426487786597
+Epsilon 5       Score 1.0000: 2.02723629254806
+---
+Epsilon 1       Score 0.5000: -0.0402484680909647
+Epsilon 1       Score 0.5500: -5.96242834469564
+Epsilon 1       Score 0.6000: 0.509224888568386
+Epsilon 1       Score 0.6500: 11.7694858344693
+Epsilon 1       Score 0.7000: 8.26711297292605
+Epsilon 1       Score 0.7500: 15.6568092080348
+Epsilon 1       Score 0.8000: 23.1746816908471
+Epsilon 1       Score 0.8500: 17.6855220567847
+Epsilon 1       Score 0.9000: 25.0675551530834
+Epsilon 1       Score 0.9500: 7.86845528717057
+Epsilon 1       Score 1.0000: 0.947979358728008
+---
+Epsilon 0.5     Score 0.5000: 2.37713284719788
+Epsilon 0.5     Score 0.5500: 0.569608254198408
+Epsilon 0.5     Score 0.6000: 2.2956084909201
+Epsilon 0.5     Score 0.6500: 18.5877954841727
+Epsilon 0.5     Score 0.7000: 5.10995034276358
+Epsilon 0.5     Score 0.7500: 15.5403754712211
+Epsilon 0.5     Score 0.8000: 25.5667591850336
+Epsilon 0.5     Score 0.8500: 14.1791488642748
+Epsilon 0.5     Score 0.9000: 25.186373229989
+Epsilon 0.5     Score 0.9500: 4.55899217960228
+Epsilon 0.5     Score 1.0000: -1.15892734258861
+---
+Epsilon 0.1     Score 0.5000: 0.842578723148521
+Epsilon 0.1     Score 0.5500: 10.9173799810094
+Epsilon 0.1     Score 0.6000: 4.69975611619632
+Epsilon 0.1     Score 0.6500: 9.0876688766413
+Epsilon 0.1     Score 0.7000: 6.31193247262576
+Epsilon 0.1     Score 0.7500: 26.0926468212228
+Epsilon 0.1     Score 0.8000: 32.8187671647458
+Epsilon 0.1     Score 0.8500: 5.92425234194806
+Epsilon 0.1     Score 0.9000: 35.4753660704066
+Epsilon 0.1     Score 0.9500: -7.15958816145124
+Epsilon 0.1     Score 1.0000: 6.45626521358041
+---
+Epsilon 0.01    Score 0.5000: -310.540562433914
+Epsilon 0.01    Score 0.5500: -85.7426614268882
+Epsilon 0.01    Score 0.6000: 73.3372362492789
+Epsilon 0.01    Score 0.6500: -4.75145994390202
+Epsilon 0.01    Score 0.7000: 23.5884819616115
+Epsilon 0.01    Score 0.7500: 40.0956586711323
+Epsilon 0.01    Score 0.8000: 130.251357646732
+Epsilon 0.01    Score 0.8500: -102.263185113713
+Epsilon 0.01    Score 0.9000: 21.8487139532288
+Epsilon 0.01    Score 0.9500: 85.4609497806686
+Epsilon 0.01    Score 1.0000: 181.896503478623
+---
+
+Number of iterations we can do before privacy budget is exhausted: 50
+
+Average error on counts...
+Epsilon 10 avg error: -0.00289536785863476
+Epsilon 5 avg error: -0.0323071004103986
+Epsilon 1 avg error: -0.106479977272671
+Epsilon 0.5 avg error: -0.15260492319029
+Epsilon 0.1 avg error: 0.303584270182043
+Epsilon 0.01 avg error: 7.85231493805881
+
+Average error on averages...
+Epsilon 10 avg error: 0.000406946906199595
+Epsilon 5 avg error: 0.000790699855633915
+Epsilon 1 avg error: 0.00215371117600066
+Epsilon 0.5 avg error: -0.00201734699508494
+Epsilon 0.1 avg error: 0.0678420602584222
+Epsilon 0.01 avg error: 0.605974166929792
+
+Average error on sums...
+Epsilon 10 avg error: -0.00623515485522603
+Epsilon 5 avg error: -0.0779657267730747
+Epsilon 1 avg error: -0.0724177780249362
+Epsilon 0.5 avg error: -0.348411455523164
+Epsilon 0.1 avg error: 0.283829361693193
+Epsilon 0.01 avg error: 32.1042977716418
+
+Average error on ranged counts...
+Epsilon 10 avg error: -0.00883223201018566
+Epsilon 5 avg error: -0.0339071476213291
+Epsilon 1 avg error: 0.0473762009690027
+Epsilon 0.5 avg error: -0.346627836240295
+Epsilon 0.1 avg error: -0.944734947520807
+Epsilon 0.01 avg error: -20.1133009290864
+
+Variance of counts...
+Epsilon 10 min variance: 0.000110605456228541; max variance: 0.394690131314434
+Epsilon 5 min variance: 0.00147459593742383; max variance: 0.645541516283629
+Epsilon 1 min variance: 0.0229655703203235; max variance: 5.2254937096055
+Epsilon 0.5 min variance: 0.0446495973463215; max variance: 8.32464622926594
+Epsilon 0.1 min variance: 0.397275228195639; max variance: 53.235962774433
+Epsilon 0.01 min variance: 0.460429065439499; max variance: 481.365874050688
+
+Variance of averages...
+Epsilon 10 min variance: 1.993512401266E-06; max variance: 0.00608783523643719
+Epsilon 5 min variance: 4.76266115774227E-05; max variance: 0.0146777492476776
+Epsilon 1 min variance: 0.000113028437171092; max variance: 0.0646213182041984
+Epsilon 0.5 min variance: 0.000226924603260126; max variance: 0.165246166221655
+Epsilon 0.1 min variance: 0.000280312786565817; max variance: 0.654242130122992
+Epsilon 0.01 min variance: 0.0018109825762741; max variance: 1.74598506287131
+
+Variance of sums...
+Epsilon 10 min variance: 1.00843570720599E-05; max variance: 0.47481642703346
+Epsilon 5 min variance: 0.00277004955070481; max variance: 0.955722686613228
+Epsilon 1 min variance: 0.00237680038458166; max variance: 4.65393664688193
+Epsilon 0.5 min variance: 0.058322288285197; max variance: 8.42830136741129
+Epsilon 0.1 min variance: 0.133294096661785; max variance: 54.6512798728337
+Epsilon 0.01 min variance: 4.15821111628748; max variance: 362.14157854044
+
+Variance of ranged counts...
+Epsilon 10 min variance: 6.50391235978987E-07; max variance: 0.492403960479493
+Epsilon 5 min variance: 0.000653871279297391; max variance: 1.20522890036186
+Epsilon 1 min variance: 0.00660758544224649; max variance: 4.5639387611181
+Epsilon 0.5 min variance: 0.0739325616099862; max variance: 11.5100247495473
+Epsilon 0.1 min variance: 0.386685510095873; max variance: 53.8870705547326
+Epsilon 0.01 min variance: 0.341435160175159; max variance: 442.905063049306
