@@ -15,8 +15,28 @@ namespace LINQAgain {
             PINQueryable<double[]> pinqData = PackDataAsQueryable(rawData);
 
             // Do PINQ k-means
-            //RunPINQKMeans(pinqData, 1000, 2, 2, 5);
+            RunPINQKMeans(pinqData, 1000, 2, 2, 5);
             RunPureKMeans(rawData, 2, 2, 5);
+
+            // Try over some random data as well...
+            for (int i = 0; i < 5; i++) {
+                // Get some data
+                rawData = Generate2DRandomData();
+                //foreach (var d in rawData) {
+                //    foreach (var j in d) {
+                //        Console.Write(j + ",");
+                //    }
+                //    Console.WriteLine();
+                //}
+
+                // Get PINQ-safe data
+                pinqData = PackDataAsQueryable(rawData);
+
+                // Do PINQ k-means
+                RunPINQKMeans(pinqData, 100000, 2, 2, 10);
+                RunPureKMeans(rawData, 2, 2, 10);
+                Console.WriteLine();
+            }
 
             // Pause the application
             Console.ReadKey(true);
@@ -109,7 +129,7 @@ namespace LINQAgain {
                 new Dictionary<double[], List<double[]>>();
             foreach (double[] d in data) {
                 double minDist = Double.MaxValue;
-                double[] currentBest = { 0, 0 };
+                double[] currentBest = null;
 
                 foreach (double[] c in centroids) {
                     double dist = Dist(d, c);
@@ -130,11 +150,12 @@ namespace LINQAgain {
 
             // Update centers
             double[][] newCentroids = new double[centroids.Length][];
-            for (int i = 0; i < centroids.Length; i++) {
+            int centroidNum = 0;
+            foreach (var part in parts) {
 
                 // Sum up each dimension of each datapoint
                 double[] sums = new double[dataDims];
-                foreach (double[] d in parts[centroids[i]]) {
+                foreach (double[] d in part.Value) {
                     for (int j = 0; j < dataDims; j++) {
                         sums[j] += d[j];
                     }
@@ -142,10 +163,16 @@ namespace LINQAgain {
 
                 // Create new centroid
                 for (int j = 0; j < dataDims; j++) {
-                    sums[j] /= dataDims;
+                    sums[j] /= part.Value.Count;
                 }
-                newCentroids[i] = sums;
+                newCentroids[centroidNum++] = sums;
             }
+
+            // We may not have enough new centroids to fill the list
+            //  Copy over the originals if so
+            for (int i = 0; i < newCentroids.Length; i++)
+                if (newCentroids[i] == null)
+                    newCentroids[i] = new double[] { 0, 0 };
 
             return newCentroids;
         }
