@@ -9,25 +9,43 @@ namespace LINQAgain {
 
         static void Main(string[] args) {
             // Get some data
-            double[][] rawData = GenerateSimpleData();// Generate2DRandomData();
-
+            // Note that for this contrived dataset, we should almost always
+            //  hit the desired centroids in 5 iterations
+            double[][] rawData = GenerateSimpleData();
+            
             // Get PINQ-safe data
             PINQueryable<double[]> pinqData = PackDataAsQueryable(rawData);
 
-            // Do PINQ k-means
-            RunPINQKMeans(pinqData, 1000, 2, 2, 5);
-            RunPureKMeans(rawData, 2, 2, 5);
+            // Do regular k-means
+            Console.WriteLine("Ground-truth:");
+            double[][] trueCentroids = RunPureKMeans(rawData, 2, 2, 5);
+
+            // Do PINQ k-means, with several epsilons
+            Console.WriteLine("PINQ:");
+            double[] epsilons = { 100, 10, 5, 1, 0.5, 0.1, 0.01 };
+            for (int i = 0; i < 5; i++) {
+                foreach (double ep in epsilons) {
+                    Console.WriteLine("Epsilon " + ep);
+                    double[][] dpCentroids = RunPINQKMeans(pinqData, ep, 2, 2, 5);
+
+                    // Calculate error distance for each centroid
+                    Console.WriteLine("Error:");
+                    foreach (double[] d in dpCentroids) {
+                        Console.WriteLine(Math.Min(Dist(trueCentroids[0], d),
+                                                   Dist(trueCentroids[1], d)));
+                    }
+                    Console.WriteLine();
+                }
+            }
+
+            Console.WriteLine("\n---");
 
             // Try over some random data as well...
             for (int i = 0; i < 5; i++) {
+                Console.WriteLine("Random Data, iteration " + (i + 1));
+
                 // Get some data
                 rawData = Generate2DRandomData();
-                //foreach (var d in rawData) {
-                //    foreach (var j in d) {
-                //        Console.Write(j + ",");
-                //    }
-                //    Console.WriteLine();
-                //}
 
                 // Get PINQ-safe data
                 pinqData = PackDataAsQueryable(rawData);
@@ -65,7 +83,7 @@ namespace LINQAgain {
             return new PINQueryable<double[]>(data.AsQueryable(), null);
         }
 
-        static void RunPINQKMeans(PINQueryable<double[]> data, double epsilon,
+        static double[][] RunPINQKMeans(PINQueryable<double[]> data, double epsilon,
           int dataDims, int k, int iters) {
             // Performs #iters toward forming #k clusters with PINQ-DP
             //  k-means clustering, for #dataDims-dimensional data
@@ -87,9 +105,11 @@ namespace LINQAgain {
                     Console.Write("\t{0:F4}", value);
                 Console.WriteLine();
             }
+
+            return centroids;
         }
 
-        static void RunPureKMeans(double[][] data, int dataDims, int k, 
+        static double[][] RunPureKMeans(double[][] data, int dataDims, int k, 
           int iters) {
             // Performs #iters toward forming #k clusters with
             //  k-means clustering, for #dataDims-dimensional data
@@ -110,6 +130,8 @@ namespace LINQAgain {
                     Console.Write("\t{0:F4}", value);
                 Console.WriteLine();
             }
+
+            return centroids;
         }
 
         static double Dist(double[] v1, double[] v2) {
