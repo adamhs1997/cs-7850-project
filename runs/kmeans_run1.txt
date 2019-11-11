@@ -1,0 +1,326 @@
+Ground-truth:
+kMeans: 2 centers, 5 iterations
+        0.0000  0.0000
+        0.8500  0.8500
+PINQ:
+Epsilon 100
+kMeans: 2 centers, 5 iterations
+        0.8416  0.8438
+        -0.0002 -0.0057
+Error:
+0.0104813508691802
+0.00572244267286863
+
+Epsilon 10
+kMeans: 2 centers, 5 iterations
+        -0.0377 -0.1918
+        0.7472  0.6956
+Error:
+0.195514481731587
+0.185507809455102
+
+Epsilon 5
+kMeans: 2 centers, 5 iterations
+        0.9325  0.5633
+        0.1374  -0.0774
+Error:
+0.298348737188741
+0.15764802985021
+
+Epsilon 1
+kMeans: 2 centers, 5 iterations
+        0.6466  0.3220
+        0.1047  -0.7186
+Error:
+0.565839547998265
+0.726194853203463
+
+Epsilon 0.5
+kMeans: 2 centers, 5 iterations
+        0.1455  0.3582
+        0.2036  0.4351
+Error:
+0.386604873869708
+0.480409263422111
+
+Epsilon 0.1
+kMeans: 2 centers, 5 iterations
+        -0.5649 -0.2426
+        0.5627  0.5001
+Error:
+0.614787932036395
+0.452792725270277
+
+Epsilon 0.01
+kMeans: 2 centers, 5 iterations
+        0.7519  -0.2836
+        -0.6146 -0.5587
+Error:
+0.803544754541559
+0.830591773079725
+
+Epsilon 100
+kMeans: 2 centers, 5 iterations
+        -0.0004 0.0135
+        0.8476  0.8530
+Error:
+0.0134951923186678
+0.00388162745704026
+
+Epsilon 10
+kMeans: 2 centers, 5 iterations
+        0.8661  0.9686
+        -0.0439 -0.1132
+Error:
+0.119712320767336
+0.121366668622507
+
+Epsilon 5
+kMeans: 2 centers, 5 iterations
+        0.9218  0.8356
+        -0.1523 -0.3583
+Error:
+0.0731895723884271
+0.389341354907413
+
+Epsilon 1
+kMeans: 2 centers, 5 iterations
+        -0.0465 -0.8036
+        0.1167  -0.6048
+Error:
+0.804899459107932
+0.6159294701339
+
+Epsilon 0.5
+kMeans: 2 centers, 5 iterations
+        -0.9038 0.2559
+        -0.4394 -0.6841
+Error:
+0.939344253695882
+0.813059426166028
+
+Epsilon 0.1
+kMeans: 2 centers, 5 iterations
+        0.0288  -0.5413
+        -0.8636 -0.7665
+Error:
+0.542048356517498
+1.15471181880418
+
+Epsilon 0.01
+kMeans: 2 centers, 5 iterations
+        0.4657  -0.1260
+        0.3254  -0.9386
+Error:
+0.482449075965122
+0.993386047513635
+
+Epsilon 100
+kMeans: 2 centers, 5 iterations
+        0.0126  -0.0178
+        0.8365  0.8515
+Error:
+0.021850316768399
+0.0135792100692104
+
+Epsilon 10
+kMeans: 2 centers, 5 iterations
+        0.6769  0.9219
+        -0.0213 0.0310
+Error:
+0.187474243490241
+0.0375995958610934
+
+Epsilon 5
+kMeans: 2 centers, 5 iterations
+        -0.2016 0.3939
+        0.7938  0.6204
+Error:
+0.442505523207486
+0.236340508455298
+
+Epsilon 1
+kMeans: 2 centers, 5 iterations
+        0.0054  -0.9834
+        0.2253  -0.2049
+Error:
+0.983463239173128
+0.304556715140304
+
+Epsilon 0.5
+kMeans: 2 centers, 5 iterations
+        0.4238  0.6061
+        0.2273  -0.2127
+Error:
+0.491091152985297
+0.311267409802492
+
+Epsilon 0.1
+kMeans: 2 centers, 5 iterations
+        0.6261  0.2365
+        0.3270  0.2220
+Error:
+0.653119945394499
+0.395230080875598
+
+Epsilon 0.01
+kMeans: 2 centers, 5 iterations
+        -0.7993 -0.5161
+        0.2429  -0.4775
+Error:
+0.951437381400876
+0.53576349602853
+
+Epsilon 100
+kMeans: 2 centers, 5 iterations
+        0.8488  0.8504
+        -0.0122 -0.0260
+Error:
+0.00124821027951587
+0.0287203394910696
+
+Epsilon 10
+kMeans: 2 centers, 5 iterations
+        -0.1111 0.0201
+        0.4766  0.7814
+Error:
+0.112862468969409
+0.379650123749264
+
+Epsilon 5
+kMeans: 2 centers, 5 iterations
+        0.6703  0.9399
+        0.0770  0.3058
+Error:
+0.20090327968427
+0.315372884666924
+
+Epsilon 1
+kMeans: 2 centers, 5 iterations
+        -0.8301 0.3143
+        -0.3358 -0.4456
+Error:
+0.887628788293733
+0.557921418494552
+
+Epsilon 0.5
+kMeans: 2 centers, 5 iterations
+        0.3283  -0.9527
+        0.2678  -0.6611
+Error:
+1.00771088452567
+0.713255097191475
+
+Epsilon 0.1
+kMeans: 2 centers, 5 iterations
+        -0.7063 -0.1177
+        0.7505  0.2227
+Error:
+0.715997827485648
+0.635131701028239
+
+Epsilon 0.01
+kMeans: 2 centers, 5 iterations
+        0.8859  -0.8670
+        -0.4711 -0.8850
+Error:
+1.23958438293429
+1.00257665143435
+
+Epsilon 100
+kMeans: 2 centers, 5 iterations
+        -0.1017 -0.1054
+        0.6333  0.6275
+Error:
+0.146507527552181
+0.310558863989553
+
+Epsilon 10
+kMeans: 2 centers, 5 iterations
+        0.7795  0.9980
+        -0.1304 0.0372
+Error:
+0.16396263795067
+0.135635167742926
+
+Epsilon 5
+kMeans: 2 centers, 5 iterations
+        -0.3795 -0.1186
+        0.9226  0.7640
+Error:
+0.397573033148202
+0.112503542097707
+
+Epsilon 1
+kMeans: 2 centers, 5 iterations
+        0.3696  -0.0268
+        0.8021  -0.9298
+Error:
+0.370601939738125
+1.22790225499277
+
+Epsilon 0.5
+kMeans: 2 centers, 5 iterations
+        0.6780  0.6689
+        0.8256  -0.3887
+Error:
+0.249744449771807
+0.912563034325713
+
+Epsilon 0.1
+kMeans: 2 centers, 5 iterations
+        0.1702  0.9080
+        -0.2892 -0.5842
+Error:
+0.68228772952213
+0.651845640168426
+
+Epsilon 0.01
+kMeans: 2 centers, 5 iterations
+        -0.4590 0.5909
+        0.9831  -0.8134
+Error:
+0.74823952382267
+1.27597619500189
+
+
+---
+Random Data, iteration 1
+kMeans: 2 centers, 10 iterations
+        0.0028  -0.4924
+        0.0008  0.5144
+kMeans: 2 centers, 10 iterations
+        -0.0014 -0.4915
+        0.0051  0.5155
+
+Random Data, iteration 2
+kMeans: 2 centers, 10 iterations
+        0.0098  -0.5005
+        -0.0011 0.4974
+kMeans: 2 centers, 10 iterations
+        -0.0204 -0.4857
+        0.0310  0.5125
+
+Random Data, iteration 3
+kMeans: 2 centers, 10 iterations
+        -0.5097 -0.1321
+        0.4206  0.1301
+kMeans: 2 centers, 10 iterations
+        -0.0788 -0.5061
+        0.0093  0.5217
+
+Random Data, iteration 4
+kMeans: 2 centers, 10 iterations
+        -0.0116 -0.5076
+        -0.0251 0.4971
+kMeans: 2 centers, 10 iterations
+        -0.5006 -0.0030
+        0.4793  0.0191
+
+Random Data, iteration 5
+kMeans: 2 centers, 10 iterations
+        0.0244  0.4896
+        -0.0179 -0.5146
+kMeans: 2 centers, 10 iterations
+        0.0244  0.4896
+        -0.0179 -0.5146
