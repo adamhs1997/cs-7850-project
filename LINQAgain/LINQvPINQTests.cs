@@ -25,7 +25,7 @@ namespace LINQAgain {
 
         //static void Main(string[] args) {
         //    // Run basic query tests, just to ensure everything works
-        //    //RunBasicTests();
+        //    RunBasicTests();
 
         //    // Run tests on transformed data, seeing (1) how the results
         //    //  compare, and (2) when we run out of privacy budget
@@ -33,18 +33,18 @@ namespace LINQAgain {
 
         //    // Calculate the average error on different queries
         //    //  across several iterations
-        //    //RunAverageCalculations();
+        //    RunAverageCalculations();
 
         //    // Calculate the variance of errors on different queries
         //    //  across several iterations
-        //    //RunVarianceCalculations();
+        //    RunVarianceCalculations();
 
         //    // Pause the application
         //    Console.ReadKey(true);
         //}
 
         #region Driver function calls
-        
+
         static void RunBasicTests() {
             // Count
             TestWholeCount(data, search, epsilons);
