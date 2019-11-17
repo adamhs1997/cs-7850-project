@@ -20,4 +20,5 @@ This code also uses a SQL Server backend to serve as the database to query. You 
 You should now have everything you need to run the project. Go back to Visual Studio and ensure that the project will run. Note that there are two files in the project with `main` methods defined.
 * KMeansTests.cs: This file compares a standard k-means clustering algorithm to a differential privacy-preserving implementation. Running this file will produce a long output of test results.
 * LINQvPINQTests.cs: This file does a comparison of LINQ queries with their corresponding PINQ counterparts. In this file, you can easily see how the syntax varies between these two systems. Running the file will produce a long output demonstrating how the query results differ between LINQ and PINQ.
+
 You will need to comment out one of these `main` functions in order for the code to run, otherwise Visual Studio will not know the entry point for the code. (The KMeansTests `main` function is enabled by default.) Example run outputs can be found in the runs folder of this repository. You can compare your output to these examples to ensure the code is running properly.
