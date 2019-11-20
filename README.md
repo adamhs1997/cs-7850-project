@@ -11,7 +11,7 @@ This code is distributed as a Visual Studio solution. To run, clone the entire p
 This project depends on the PINQ prototype distributed at https://www.microsoft.com/en-us/download/details.aspx?id=52363. For convenience, this has been included with our code. This prototype was written by Frank McSherry, Microsoft Research, 2009.
 
 #### Setting up SQL Server
-This code also uses a SQL Server backend to serve as the database to query. You will need to download and install SQL Server to make this work. The Express version is fine. You can download this at https://www.microsoft.com/en-us/sql-server/sql-server-editions-express. You can then import the CSV file data distributed with this repository to the SQL Server. To do so:
+This code also uses a SQL Server backend to serve as the database to query. You will need to download and install SQL Server to make this work. The Express version is fine. You can download this at https://www.microsoft.com/en-us/sql-server/sql-server-editions-express. You can then import the CSV file data distributed with this repository (in the data folder) to the SQL Server. To do so:
 1. Open the "SQL Server Import and Export Wizard"
 2. Click "Next" past the first screen to get to "Choose a Data Source". From the dropdown, select "Flat File Source". Click "Browse..." to locate the CSV data on your computer. Check the box next to "Column names in the first data row".
 3. Click "Next" through the rest of the wizard, accepting all defaults.
